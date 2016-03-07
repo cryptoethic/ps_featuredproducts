@@ -36,13 +36,13 @@ use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchContext;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
 
-class homefeatured extends Module implements WidgetInterface
+class Ps_FeaturedProducts extends Module implements WidgetInterface
 {
     public function __construct()
     {
-        $this->name = 'homefeatured';
+        $this->name = 'ps_featuredproducts';
         $this->tab = 'front_office_features';
-        $this->version = '2.0.0';
+        $this->version = '1.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -53,7 +53,7 @@ class homefeatured extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->l('Featured products on the homepage');
+        $this->displayName = $this->l('Featured products');
         $this->description = $this->l('Displays featured products in the central column of your homepage.');
     }
 

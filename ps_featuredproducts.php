@@ -34,8 +34,6 @@ use PrestaShop\PrestaShop\Adapter\Image\ImageRetriever;
 use PrestaShop\PrestaShop\Adapter\Product\PriceFormatter;
 use PrestaShop\PrestaShop\Core\Product\ProductListingPresenter;
 use PrestaShop\PrestaShop\Adapter\Product\ProductColorsRetriever;
-use PrestaShop\PrestaShop\Adapter\Translator;
-use PrestaShop\PrestaShop\Adapter\LegacyContext;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchContext;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
@@ -122,7 +120,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         $category = new Category((int) Configuration::get('HOME_FEATURED_CAT'));
 
         $searchProvider = new CategoryProductSearchProvider(
-            new Translator(new LegacyContext()),
+            $this->context->getTranslator(),
             $category
         );
 
@@ -162,7 +160,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
             $this->context->link,
             new PriceFormatter(),
             new ProductColorsRetriever(),
-            new Translator(new LegacyContext())
+            $this->context->getTranslator()
         );
 
         $products_for_template = [];

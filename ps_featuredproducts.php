@@ -55,8 +55,8 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->l('Featured products');
-        $this->description = $this->l('Displays featured products in the central column of your homepage.');
+        $this->displayName = $this->getTranslator()->trans('Featured products', array(), 'Modules.FeaturedProducts.Admin');
+        $this->description = $this->getTranslator()->trans('Displays featured products in the central column of your homepage.', array(), 'Modules.FeaturedProducts.Admin');
     }
 
     public function install()
@@ -89,17 +89,17 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         if (Tools::isSubmit('submitHomeFeatured')) {
             $nbr = Tools::getValue('HOME_FEATURED_NBR');
             if (!Validate::isInt($nbr) || $nbr <= 0) {
-                $errors[] = $this->l('The number of products is invalid. Please enter a positive number.');
+                $errors[] = $this->getTranslator()->trans('The number of products is invalid. Please enter a positive number.', array(), 'Modules.FeaturedProducts.Admin');
             }
 
             $cat = Tools::getValue('HOME_FEATURED_CAT');
             if (!Validate::isInt($cat) || $cat <= 0) {
-                $errors[] = $this->l('The category ID is invalid. Please choose an existing category ID.');
+                $errors[] = $this->getTranslator()->trans('The category ID is invalid. Please choose an existing category ID.', array(), 'Modules.FeaturedProducts.Admin');
             }
 
             $rand = Tools::getValue('HOME_FEATURED_RANDOMIZE');
             if (!Validate::isBool($rand)) {
-                $errors[] = $this->l('Invalid value for the "randomize" flag.');
+                $errors[] = $this->getTranslator()->trans('Invalid value for the "randomize" flag.', array(), 'Modules.FeaturedProducts.Admin');
             }
             if (isset($errors) && count($errors)) {
                 $output = $this->displayError(implode('<br />', $errors));
@@ -108,7 +108,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
                 Configuration::updateValue('HOME_FEATURED_CAT', (int) $cat);
                 Configuration::updateValue('HOME_FEATURED_RANDOMIZE', (bool) $rand);
                 Tools::clearCache(Context::getContext()->smarty, $this->getTemplatePath('ps_featuredproducts.tpl'));
-                $output = $this->displayConfirmation($this->l('Your settings have been updated.'));
+                $output = $this->displayConfirmation($this->getTranslator()->trans('Settings updated.', array(), 'Admin.Notifications.Success'));
             }
         }
 
@@ -206,47 +206,47 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->l('Settings'),
+                    'title' => $this->getTranslator()->trans('Settings', array(), 'Admin.Global'),
                     'icon' => 'icon-cogs',
                 ),
-                'description' => $this->l('To add products to your homepage, simply add them to the corresponding product category (default: "Home").'),
+                'description' => $this->getTranslator()->trans('To add products to your homepage, simply add them to the corresponding product category (default: "Home").', array(), 'Modules.FeaturedProducts.Admin'),
                 'input' => array(
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Number of products to be displayed'),
+                        'label' => $this->getTranslator()->trans('Number of products to be displayed', array(), 'Modules.FeaturedProducts.Admin'),
                         'name' => 'HOME_FEATURED_NBR',
                         'class' => 'fixed-width-xs',
-                        'desc' => $this->l('Set the number of products that you would like to display on homepage (default: 8).'),
+                        'desc' => $this->getTranslator()->trans('Set the number of products that you would like to display on homepage (default: 8).', array(), 'Modules.FeaturedProducts.Admin'),
                     ),
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Category from which to pick products to be displayed'),
+                        'label' => $this->getTranslator()->trans('Category from which to pick products to be displayed', array(), 'Modules.FeaturedProducts.Admin'),
                         'name' => 'HOME_FEATURED_CAT',
                         'class' => 'fixed-width-xs',
-                        'desc' => $this->l('Choose the category ID of the products that you would like to display on homepage (default: 2 for "Home").'),
+                        'desc' => $this->getTranslator()->trans('Choose the category ID of the products that you would like to display on homepage (default: 2 for "Home").', array(), 'Modules.FeaturedProducts.Admin'),
                     ),
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Randomly display featured products'),
+                        'label' => $this->getTranslator()->trans('Randomly display featured products', array(), 'Modules.FeaturedProducts.Admin'),
                         'name' => 'HOME_FEATURED_RANDOMIZE',
                         'class' => 'fixed-width-xs',
-                        'desc' => $this->l('Enable if you wish the products to be displayed randomly (default: no).'),
+                        'desc' => $this->getTranslator()->trans('Enable if you wish the products to be displayed randomly (default: no).', array(), 'Modules.FeaturedProducts.Admin'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
                                 'value' => 1,
-                                'label' => $this->l('Yes'),
+                                'label' => $this->getTranslator()->trans('Yes', array(), 'Admin.Global'),
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => 0,
-                                'label' => $this->l('No'),
+                                'label' => $this->getTranslator()->trans('No', array(), 'Admin.Global'),
                             ),
                         ),
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->l('Save'),
+                    'title' => $this->getTranslator()->trans('Save', array(), 'Admin.Actions'),
                 ),
             ),
         );

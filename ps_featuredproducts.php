@@ -109,7 +109,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
                 Configuration::updateValue('HOME_FEATURED_NBR', (int) $nbr);
                 Configuration::updateValue('HOME_FEATURED_CAT', (int) $cat);
                 Configuration::updateValue('HOME_FEATURED_RANDOMIZE', (bool) $rand);
-                Tools::clearCache(Context::getContext()->smarty, $this->getTemplatePath('ps_featuredproducts.tpl'));
+                Tools::clearCache(Context::getContext()->smarty, 'module:ps_featuredproducts/ps_featuredproducts.tpl');
                 $output = $this->displayConfirmation($this->getTranslator()->trans('Settings updated.', array(), 'Admin.Notifications.Success'));
             }
         }
@@ -293,10 +293,11 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
-        if (!$this->isCached('ps_featuredproducts.tpl', $this->getCacheId('ps_featuredproducts'))) {
-            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
-        }
+        $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
 
-        return $this->display(__FILE__, 'ps_featuredproducts.tpl', $this->getCacheId('ps_featuredproducts'));
+        return $this->fetch(
+            'module:ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl',
+            $this->getCacheId('ps_featuredproducts')
+        );
     }
 }

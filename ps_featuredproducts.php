@@ -74,6 +74,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
             && $this->registerHook('displayHome')
             && $this->registerHook('displayOrderConfirmation2')
             && $this->registerHook('displayCrossSellingShoppingCart')
+            && $this->registerHook('actionAdminGroupsControllerSaveAfter')
         ;
     }
 
@@ -194,6 +195,11 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
     }
 
     public function hookCategoryUpdate($params)
+    {
+        $this->_clearCache('*');
+    }
+
+    public function hookActionAdminGroupsControllerSaveAfter($params)
     {
         $this->_clearCache('*');
     }

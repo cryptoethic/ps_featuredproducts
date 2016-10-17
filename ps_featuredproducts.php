@@ -301,8 +301,9 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
     {
         $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
 
-        return $this->fetch(
-            'module:ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl',
+        return $this->display(
+            __FILE__,
+            'views/templates/hook/ps_featuredproducts.tpl',
             $this->getCacheId('ps_featuredproducts')
         );
     }

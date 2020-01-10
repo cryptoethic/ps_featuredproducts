@@ -2,7 +2,7 @@
   "name": "prestashop/ps_featuredproducts",
   "description": "PrestaShop - Featured products",
   "homepage": "https://github.com/PrestaShop/ps_featuredproducts",
-  "license": "AFL - Academic Free License (AFL 3.0)",
+  "license": "AFL-3.0",
   "authors": [
     {
       "name": "PrestaShop SA",

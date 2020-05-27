@@ -303,15 +303,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
 
         $presenterFactory = new ProductPresenterFactory($this->context);
         $presentationSettings = $presenterFactory->getPresentationSettings();
-        $presenter = new ProductListingPresenter(
-            new ImageRetriever(
-                $this->context->link
-            ),
-            $this->context->link,
-            new PriceFormatter(),
-            new ProductColorsRetriever(),
-            $this->context->getTranslator()
-        );
+        $presenter = $presenterFactory->getPresenter();
 
         $products_for_template = [];
 

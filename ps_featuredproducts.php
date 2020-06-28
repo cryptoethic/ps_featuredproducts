@@ -175,11 +175,13 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
                         'desc' => $this->trans('Set the number of products that you would like to display on homepage (default: 8).', array(), 'Modules.Featuredproducts.Admin'),
                     ),
                     array(
-                        'type' => 'text',
+                        'type' => 'categories',
+                        'tree' => [
+                          'id' => 'home_featured_category',
+                          'selected_categories' => [ Configuration::get('HOME_FEATURED_CAT'), ],
+                        ],
                         'label' => $this->trans('Category from which to pick products to be displayed', array(), 'Modules.Featuredproducts.Admin'),
                         'name' => 'HOME_FEATURED_CAT',
-                        'class' => 'fixed-width-xs',
-                        'desc' => $this->trans('Choose the category ID of the products that you would like to display on homepage (default: 2 for "Home").', array(), 'Modules.Featuredproducts.Admin'),
                     ),
                     array(
                         'type' => 'switch',

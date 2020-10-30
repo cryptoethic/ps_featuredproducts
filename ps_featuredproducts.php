@@ -58,7 +58,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         parent::__construct();
 
         $this->displayName = $this->trans('Featured products', array(), 'Modules.Featuredproducts.Admin');
-        $this->description = $this->trans('Displays featured products in the central column of your homepage.', array(), 'Modules.Featuredproducts.Admin');
+        $this->description = $this->trans('Pick a category and highlight its items, enhance customer experience with a lively homepage.', array(), 'Modules.Featuredproducts.Admin');
 
         $this->templateFile = 'module:ps_featuredproducts/views/templates/hook/ps_featuredproducts.tpl';
     }

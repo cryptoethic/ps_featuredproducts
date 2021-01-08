@@ -80,6 +80,8 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
             && $this->registerHook('displayOrderConfirmation2')
             && $this->registerHook('displayCrossSellingShoppingCart')
             && $this->registerHook('actionAdminGroupsControllerSaveAfter')
+            && $this->registerHook('actionAuthentication')
+            && $this->registerHook('actionProductSave')
         ;
     }
 
@@ -111,6 +113,16 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
     }
 
     public function hookActionAdminGroupsControllerSaveAfter($params)
+    {
+        $this->_clearCache('*');
+    }
+    
+    public function hookActionAuthentication($params)
+    {
+        $this->_clearCache('*');
+    }
+
+    public function hookActionProductSave($params)
     {
         $this->_clearCache('*');
     }

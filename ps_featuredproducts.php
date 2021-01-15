@@ -277,7 +277,7 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
     { 
         $cacheId = parent::getCacheId($name); 
         if(isset($this->context->customer->id)){
-            $cacheId .= '|'.$this->context->customer->id;
+            $cacheId .= '|'.(int)$this->context->customer->id;
         } 
         return $cacheId;
     }

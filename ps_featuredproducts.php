@@ -80,7 +80,6 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
             && $this->registerHook('displayOrderConfirmation2')
             && $this->registerHook('displayCrossSellingShoppingCart')
             && $this->registerHook('actionAdminGroupsControllerSaveAfter')
-            && $this->registerHook('actionAuthentication')
             && $this->registerHook('actionProductSave')
         ;
     }
@@ -117,11 +116,6 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         $this->_clearCache('*');
     }
     
-    public function hookActionAuthentication($params)
-    {
-        $this->_clearCache('*');
-    }
-
     public function hookActionProductSave($params)
     {
         $this->_clearCache('*');
@@ -279,6 +273,15 @@ class Ps_FeaturedProducts extends Module implements WidgetInterface
         return false;
     }
 
+    protected function getCacheId($name = null)
+    { 
+        $cacheId = parent::getCacheId($name); 
+        if(isset($this->context->customer->id)){
+            $cacheId .= '|'.$this->context->customer->id;
+        } 
+        return $cacheId;
+    }
+    
     protected function getProducts()
     {
         $category = new Category((int) Configuration::get('HOME_FEATURED_CAT'));
